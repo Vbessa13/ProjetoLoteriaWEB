@@ -47,8 +47,9 @@ body{
 
 /* LOGO */
 .logo-img{
-  width: 256px;
-  height: 256px;
+  width: 300px;
+  height: 300px;
+  /*border-radius: 50%;*/
   object-fit: cover;
   /*box-shadow: 0 0 0 5px rgba(255,255,255,0.06), 0 10px 26px rgba(0,0,0,.5);*/
 }
@@ -61,7 +62,7 @@ h1{
   font-weight: 700;
   font-size: clamp(28px, 7.5vw, 40px);
   line-height: 1.15;
-  /*transform: rotate(-1.4deg);*/
+  transform: rotate(-1.4deg);
 }
 h1 .linha-1{
   display: block;
@@ -123,10 +124,18 @@ h1 .linha-2{
 }
 .btn-comprar svg{ width: 20px; height:20px; fill: var(--azul-escuro); }
 
+.btn-maps{
+  background: linear-gradient(180deg, #5b9bff, #3f7fe0);
+  color: var(--branco);
+  box-shadow: 0 8px 22px rgba(63,127,224,.45);
+}
+.btn-maps svg{ width: 20px; height:20px; }
+
 /* efeito de saltar da tela e voltar, escalonado por botão */
 .botoes .btn:nth-child(1){ animation-delay: 0s; }
 .botoes .btn:nth-child(2){ animation-delay: .3s; }
 .botoes .btn:nth-child(3){ animation-delay: .6s; }
+.botoes .btn:nth-child(4){ animation-delay: .9s; }
 
 @keyframes saltar{
   0%, 100%{ transform: translateY(0) scale(1); }
@@ -176,21 +185,6 @@ h1 .linha-2{
   background: #e02020;
   transform: rotate(-45deg);
 }
-
-/* BOTÃO FLUTUANTE WHATSAPP */
-.zap-flutuante{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--verde-zap);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 6px 18px rgba(0,0,0,.4);
-  z-index: 50;
-  animation: pulsar 2.4s ease-in-out infinite;
-}
-.zap-flutuante svg{ width: 28px; height: 28px; fill: #fff; }
 
 @keyframes pulsar{
   0%, 100%{ box-shadow: 0 6px 18px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.55); }
