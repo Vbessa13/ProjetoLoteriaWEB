@@ -1,0 +1,203 @@
+:root{
+  --azul-escuro: #071a3f;
+  --azul: #0c2b63;
+  --azul-claro: #164a9c;
+  --dourado: #f0b429;
+  --dourado-claro: #ffe08a;
+  --verde-zap: #25d366;
+  --verde-zap-escuro: #1fb855;
+  --laranja: #f39c12;
+  --branco: #ffffff;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--azul-escuro);
+  color: var(--branco);
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+/* padrão de arcos de fundo, como na referência */
+.fundo-padrao{
+  position: relative;
+  background-color: var(--azul-escuro);
+  background-image:
+    radial-gradient(circle at 50% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%);
+  background-size: 140px 140px;
+  background-position: 0 0, 70px 70px, 70px 70px;
+  padding: 48px 20px 0;
+  overflow: hidden;
+}
+
+.container{
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 60px;
+}
+
+/* LOGO */
+.logo-img{
+  width: 256px;
+  height: 256px;
+  object-fit: cover;
+  /*box-shadow: 0 0 0 5px rgba(255,255,255,0.06), 0 10px 26px rgba(0,0,0,.5);*/
+}
+
+/* TÍTULO — tratamento tipográfico próprio da marca, herdando o verde
+   e o laranja do clover da logo em vez de uma fonte de sistema neutra */
+h1{
+  margin-top: 32px;
+  font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 7.5vw, 40px);
+  line-height: 1.15;
+  /*transform: rotate(-1.4deg);*/
+}
+h1 .linha-1{
+  display: block;
+  color: #ff8a3d;
+}
+h1 .linha-2{
+  display: block;
+  color: #4fd67a;
+}
+
+.subtitulo{
+  margin-top: 10px;
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 700;
+  color: #f7f74a;
+  max-width: 480px;
+  margin-left:auto; margin-right:auto;
+}
+
+/* BOTÕES */
+.botoes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  margin-top: 44px;
+}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 22px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: clamp(14px, 4vw, 16px);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  animation: saltar 2.6s ease-in-out infinite;
+}
+.btn:focus-visible{ outline: 3px solid #fff; outline-offset: 2px; }
+
+.btn-zap{
+  background: linear-gradient(180deg, var(--verde-zap), var(--verde-zap-escuro));
+  color: var(--branco);
+  box-shadow: 0 8px 20px rgba(37,211,102,.4);
+}
+.btn-zap svg{ width: 20px; height:20px; fill: currentColor; }
+
+.btn-comprar{
+  background: linear-gradient(180deg, #ffb347, var(--laranja));
+  color: var(--azul-escuro);
+  box-shadow: 0 8px 22px rgba(243,156,18,.45);
+  font-size: clamp(15px, 4.2vw, 18px);
+}
+.btn-comprar svg{ width: 20px; height:20px; fill: var(--azul-escuro); }
+
+/* efeito de saltar da tela e voltar, escalonado por botão */
+.botoes .btn:nth-child(1){ animation-delay: 0s; }
+.botoes .btn:nth-child(2){ animation-delay: .3s; }
+.botoes .btn:nth-child(3){ animation-delay: .6s; }
+
+@keyframes saltar{
+  0%, 100%{ transform: translateY(0) scale(1); }
+  50%{ transform: translateY(-10px) scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .btn{ animation: none; }
+}
+
+/* RODAPÉ EM DESTAQUE */
+.rodape{
+  background: var(--branco);
+  color: var(--azul-escuro);
+  text-align: center;
+  padding: 22px 20px;
+  position: relative;
+  z-index: 2;
+}
+.rodape p{ margin: 4px 0; font-size: 14px; color: #5a5a5a; }
+.rodape .aviso{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+}
+
+/* símbolo de proibido para menores de 18 anos */
+.selo-18{
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 2.5px solid #e02020;
+  position: relative;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 10px;
+  font-weight: 800;
+  color: #e02020;
+}
+.selo-18::after{
+  content:"";
+  position: absolute;
+  width: 130%;
+  height: 2.5px;
+  background: #e02020;
+  transform: rotate(-45deg);
+}
+
+/* BOTÃO FLUTUANTE WHATSAPP */
+.zap-flutuante{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--verde-zap);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+  z-index: 50;
+  animation: pulsar 2.4s ease-in-out infinite;
+}
+.zap-flutuante svg{ width: 28px; height: 28px; fill: #fff; }
+
+@keyframes pulsar{
+  0%, 100%{ box-shadow: 0 6px 18px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.55); }
+  50%{ box-shadow: 0 6px 18px rgba(0,0,0,.4), 0 0 0 12px rgba(37,211,102,0); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .zap-flutuante{ animation: none; }
+  html{ scroll-behavior: auto; }
+}
