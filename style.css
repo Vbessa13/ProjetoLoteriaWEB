@@ -6,7 +6,8 @@
   --dourado-claro: #ffe08a;
   --verde-zap: #25d366;
   --verde-zap-escuro: #1fb855;
-  --laranja: #f39c12;
+  --laranja: #f39200;
+  --azul-caixa: #005ca9;
   --branco: #ffffff;
 }
 
@@ -32,7 +33,7 @@ body{
   position: relative;
   background-color: var(--azul-escuro);
   background-image:
-    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(22,74,156,.55), transparent 70%),
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(0,92,169,.55), transparent 70%),
     radial-gradient(circle at 50% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
     radial-gradient(circle at 0% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
     radial-gradient(circle at 100% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%);
@@ -56,13 +57,16 @@ body{
 .logo-img{
   display: block;
   margin: 0 auto;
-  width: min(260px, 64vw);
+  width: min(250px, 66vw);
   height: auto;
-  filter: drop-shadow(0 10px 24px rgba(0,0,0,.35));
+  padding: 14px 18px;
+  background: var(--branco);
+  border-radius: 24px;
+  box-shadow: 0 0 0 4px rgba(243,146,0,.9), 0 14px 32px rgba(0,0,0,.45);
 }
 
-/* TÍTULO — tratamento tipográfico próprio da marca, herdando o verde
-   e o laranja do clover da logo em vez de uma fonte de sistema neutra */
+/* TÍTULO — tratamento tipográfico próprio da marca, com o laranja e o azul
+   do trevo da logo Lotérica em vez de uma fonte de sistema neutra */
 h1{
   margin-top: 20px;
   font-family: 'Baloo 2', 'Segoe UI', sans-serif;
@@ -74,11 +78,11 @@ h1{
 }
 h1 .linha-1{
   display: block;
-  color: #ff8a3d;
+  color: var(--laranja);
 }
 h1 .linha-2{
   display: block;
-  color: #4fd67a;
+  color: #7cc2ff;
 }
 
 .subtitulo{
@@ -132,18 +136,18 @@ h1 .linha-2{
 
 /* botão principal: maior e com efeito de saltar para chamar atenção */
 .btn-comprar{
-  background: linear-gradient(180deg, #ffc061, var(--laranja));
+  background: linear-gradient(180deg, #ffb53d, var(--laranja));
   color: var(--azul-escuro);
-  box-shadow: 0 6px 0 #c47a06, 0 12px 26px rgba(243,156,18,.4);
+  box-shadow: 0 6px 0 #b86e00, 0 12px 26px rgba(243,146,0,.4);
   font-size: clamp(17px, 4.8vw, 20px);
   min-height: 64px;
   animation: saltar 2.4s ease-in-out infinite;
 }
 
 .btn-maps{
-  background: linear-gradient(180deg, #5b9bff, #3f7fe0);
+  background: linear-gradient(180deg, #1f86e0, var(--azul-caixa));
   color: var(--branco);
-  box-shadow: 0 6px 0 #2a5fb0, 0 12px 22px rgba(63,127,224,.3);
+  box-shadow: 0 6px 0 #003f75, 0 12px 22px rgba(0,92,169,.35);
 }
 .btn-maps svg{ fill: #fff; }
 
