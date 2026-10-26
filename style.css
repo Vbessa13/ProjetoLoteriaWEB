@@ -20,19 +20,26 @@ body{
   color: var(--branco);
   line-height: 1.4;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* padrão de arcos de fundo, como na referência */
+/* padrão de arcos de fundo, com um brilho suave atrás da logo */
 .fundo-padrao{
+  flex: 1;
   position: relative;
   background-color: var(--azul-escuro);
   background-image:
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(22,74,156,.55), transparent 70%),
     radial-gradient(circle at 50% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
     radial-gradient(circle at 0% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%),
     radial-gradient(circle at 100% 100%, rgba(255,255,255,0.045) 0 44%, transparent 45%);
-  background-size: 140px 140px;
-  background-position: 0 0, 70px 70px, 70px 70px;
-  padding: 48px 20px 0;
+  background-size: 100% 100%, 140px 140px, 140px 140px, 140px 140px;
+  background-position: 0 0, 0 0, 70px 70px, 70px 70px;
+  background-repeat: no-repeat, repeat, repeat, repeat;
+  padding: 32px 16px 0;
   overflow: hidden;
 }
 
@@ -42,27 +49,28 @@ body{
   text-align: center;
   position: relative;
   z-index: 2;
-  padding-bottom: 60px;
+  padding-bottom: 48px;
 }
 
 /* LOGO */
 .logo-img{
-  width: 300px;
-  height: 300px;
-  /*border-radius: 50%;*/
-  object-fit: cover;
-  /*box-shadow: 0 0 0 5px rgba(255,255,255,0.06), 0 10px 26px rgba(0,0,0,.5);*/
+  display: block;
+  margin: 0 auto;
+  width: min(260px, 64vw);
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,.35));
 }
 
 /* TÍTULO — tratamento tipográfico próprio da marca, herdando o verde
    e o laranja do clover da logo em vez de uma fonte de sistema neutra */
 h1{
-  margin-top: 32px;
+  margin-top: 20px;
   font-family: 'Baloo 2', 'Segoe UI', sans-serif;
-  font-weight: 700;
-  font-size: clamp(28px, 7.5vw, 40px);
-  line-height: 1.15;
+  font-weight: 800;
+  font-size: clamp(28px, 7.5vw, 42px);
+  line-height: 1.1;
   transform: rotate(-1.4deg);
+  text-shadow: 0 3px 0 rgba(0,0,0,.25);
 }
 h1 .linha-1{
   display: block;
@@ -74,12 +82,12 @@ h1 .linha-2{
 }
 
 .subtitulo{
-  margin-top: 10px;
-  font-size: clamp(14px, 4vw, 16px);
-  font-weight: 700;
-  color: #f7f74a;
-  max-width: 480px;
-  margin-left:auto; margin-right:auto;
+  margin: 14px auto 0;
+  font-size: clamp(15px, 4vw, 17px);
+  font-weight: 600;
+  color: #f4f6ff;
+  max-width: 440px;
+  opacity: .9;
 }
 
 /* BOTÕES */
@@ -87,8 +95,8 @@ h1 .linha-2{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 34px;
-  margin-top: 44px;
+  gap: 16px;
+  margin-top: 32px;
 }
 
 .btn{
@@ -98,52 +106,79 @@ h1 .linha-2{
   gap: 10px;
   width: 100%;
   max-width: 420px;
-  padding: 16px 22px;
-  border-radius: 10px;
+  min-height: 58px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-family: 'Baloo 2', 'Segoe UI', sans-serif;
   font-weight: 800;
-  font-size: clamp(14px, 4vw, 16px);
+  font-size: clamp(15px, 4.2vw, 17px);
+  line-height: 1.15;
+  letter-spacing: .2px;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  animation: saltar 2.6s ease-in-out infinite;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
 }
-.btn:focus-visible{ outline: 3px solid #fff; outline-offset: 2px; }
+.btn svg{ flex-shrink: 0; width: 22px; height: 22px; fill: currentColor; }
+.btn:hover{ transform: translateY(-2px); filter: brightness(1.06); }
+.btn:active{ transform: translateY(1px) scale(.99); }
+.btn:focus-visible{ outline: 3px solid #fff; outline-offset: 3px; }
 
 .btn-zap{
   background: linear-gradient(180deg, var(--verde-zap), var(--verde-zap-escuro));
   color: var(--branco);
-  box-shadow: 0 8px 20px rgba(37,211,102,.4);
+  box-shadow: 0 6px 0 #168a42, 0 12px 22px rgba(37,211,102,.28);
 }
-.btn-zap svg{ width: 20px; height:20px; fill: currentColor; }
 
+/* botão principal: maior e com efeito de saltar para chamar atenção */
 .btn-comprar{
-  background: linear-gradient(180deg, #ffb347, var(--laranja));
+  background: linear-gradient(180deg, #ffc061, var(--laranja));
   color: var(--azul-escuro);
-  box-shadow: 0 8px 22px rgba(243,156,18,.45);
-  font-size: clamp(15px, 4.2vw, 18px);
+  box-shadow: 0 6px 0 #c47a06, 0 12px 26px rgba(243,156,18,.4);
+  font-size: clamp(17px, 4.8vw, 20px);
+  min-height: 64px;
+  animation: saltar 2.4s ease-in-out infinite;
 }
-.btn-comprar svg{ width: 20px; height:20px; fill: var(--azul-escuro); }
 
 .btn-maps{
   background: linear-gradient(180deg, #5b9bff, #3f7fe0);
   color: var(--branco);
-  box-shadow: 0 8px 22px rgba(63,127,224,.45);
+  box-shadow: 0 6px 0 #2a5fb0, 0 12px 22px rgba(63,127,224,.3);
 }
-.btn-maps svg{ width: 20px; height:20px; }
-
-/* efeito de saltar da tela e voltar, escalonado por botão */
-.botoes .btn:nth-child(1){ animation-delay: 0s; }
-.botoes .btn:nth-child(2){ animation-delay: .3s; }
-.botoes .btn:nth-child(3){ animation-delay: .6s; }
-.botoes .btn:nth-child(4){ animation-delay: .9s; }
+.btn-maps svg{ fill: #fff; }
 
 @keyframes saltar{
   0%, 100%{ transform: translateY(0) scale(1); }
-  50%{ transform: translateY(-10px) scale(1.03); }
+  50%{ transform: translateY(-5px) scale(1.02); }
 }
 
-@media (prefers-reduced-motion: reduce){
-  .btn{ animation: none; }
+/* VANTAGENS */
+.vantagens{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 420px;
+  margin: 36px auto 0;
+}
+.vantagens li{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 12px 8px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,.75);
+}
+.vantagens strong{
+  display: block;
+  font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: var(--dourado-claro);
+  margin-bottom: 2px;
+}
+
+@media (max-width: 340px){
+  .vantagens{ grid-template-columns: 1fr; }
 }
 
 /* RODAPÉ EM DESTAQUE */
@@ -151,16 +186,25 @@ h1 .linha-2{
   background: var(--branco);
   color: var(--azul-escuro);
   text-align: center;
-  padding: 22px 20px;
+  padding: 22px 16px calc(90px + env(safe-area-inset-bottom)); /* espaço para o botão flutuante não cobrir o texto */
   position: relative;
   z-index: 2;
 }
 .rodape p{ margin: 4px 0; font-size: 14px; color: #5a5a5a; }
+.rodape a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(0,0,0,.25); }
+.rodape a:hover{ color: var(--azul-claro); }
+.rodape .rodape-nome{
+  font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--azul-escuro);
+}
 .rodape .aviso{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: 12px;
   font-weight: 700;
   color: var(--azul-escuro);
 }
@@ -186,12 +230,34 @@ h1 .linha-2{
   transform: rotate(-45deg);
 }
 
+/* BOTÃO FLUTUANTE DO WHATSAPP — aparece depois dos botões principais */
+.zap-flutuante{
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 10;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--verde-zap);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.6);
+  transition: opacity .25s ease, transform .25s ease;
+  animation: pulsar 2s ease-in-out infinite;
+}
+.zap-flutuante svg{ width: 32px; height: 32px; fill: currentColor; }
+.zap-flutuante.visivel{ opacity: 1; pointer-events: auto; transform: scale(1); }
+.zap-flutuante:focus-visible{ outline: 3px solid #fff; outline-offset: 3px; }
+
 @keyframes pulsar{
   0%, 100%{ box-shadow: 0 6px 18px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.55); }
   50%{ box-shadow: 0 6px 18px rgba(0,0,0,.4), 0 0 0 12px rgba(37,211,102,0); }
 }
 
 @media (prefers-reduced-motion: reduce){
-  .zap-flutuante{ animation: none; }
+  .btn-comprar, .zap-flutuante{ animation: none; }
+  .btn, .zap-flutuante{ transition: none; }
   html{ scroll-behavior: auto; }
 }

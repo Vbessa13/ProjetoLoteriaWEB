@@ -1,9 +1,17 @@
-// Pequeno efeito: destaca o botão flutuante caso o usuário role até o final da página
+// Mostra o botão flutuante do WhatsApp quando o botão "Fale com nossos atendentes" sai da tela
 document.addEventListener('DOMContentLoaded', () => {
   const zapFlutuante = document.querySelector('.zap-flutuante');
+  const botaoAtendente = document.querySelector('.botoes .btn-zap:nth-child(2)');
+  if (!zapFlutuante || !botaoAtendente) return;
 
-  window.addEventListener('scroll', () => {
-    const pertoDoFim = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 60);
-    zapFlutuante.style.transform = pertoDoFim ? 'scale(1.08)' : 'scale(1)';
+  if (!('IntersectionObserver' in window)) {
+    zapFlutuante.classList.add('visivel');
+    return;
+  }
+
+  const observador = new IntersectionObserver(([entrada]) => {
+    const passouDoBotao = !entrada.isIntersecting && entrada.boundingClientRect.top < 0;
+    zapFlutuante.classList.toggle('visivel', passouDoBotao);
   });
+  observador.observe(botaoAtendente);
 });
